@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var arr = [1,3,3,5,25];
+    if(Array.prototype.every === undefined) {
+        Array.prototype.every = function(callback,context) {
+            //elem,index,arr
+            var i,len,arr,temp,result = true;
+            arr =this;
+            for(i = 0,len = arr.length; i < len; i += 1) {
+                if(context !== undefined) {
+                    temp = !!callback.call(context,arr[i],i,arr);
+                } else {
+                    temp = !!callback(arr[i],index,arr);
+                }
+                if(!temp){
+                    result = false;
+                    break;
+                }
+            }
+            return result
+        };
+    }
+
+    if(Array.prototype.some === undefined) {
+        Array.prototype.some = function(callback,context) {
+            var i,len,arr,temp,result = false;
+            arr = this;
+            for(i = 0,len = arr.length; i < len; i +=1) {
+                if(context !== undefined) {
+                    temp = callback.call(context,arr[i],i,arr);
+                } else {
+                    temp = callback(arr[i],i,arr);
+                }
+                if(temp) {
+                    result =true;
+                    break;
+                }
+            }
+            return result;
+        }
+    }
+
+</script>
+</body>
+</html>

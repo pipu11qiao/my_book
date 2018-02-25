@@ -1,0 +1,5 @@
+.idea
+node_modules/*
+__MACOSX/*
+.DS_Store
+books_pdf

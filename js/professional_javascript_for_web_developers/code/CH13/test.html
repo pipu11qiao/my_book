@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var x = {a:3};
+        function fun1() {
+            var x;
+            function fun2(d) {
+                return d || window.x;
+            }
+            console.log(fun2(x));
+        }
+        fun1();
+
+        var Support = {
+
+        };
+        console.log(document.implementation.hasFeature('HTMLEvents','2.0'));
+        console.log(document.implementation.hasFeature('UIEvent','3.0'));
+    </script>
+</body>
+</html>

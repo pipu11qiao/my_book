@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="myDiv">click me</div>
+    <script>
+        //事件冒泡的顺序
+//        document.body.onclick = function() {
+//
+//            console.log(this.tagName);
+//        }
+        var elArr = [document,document.documentElement,document.body,document.getElementById('myDiv')];
+        elArr.forEach(function(el,index,arr) {
+            el.onclick = function() {
+                console.log(this.tagName);
+            };
+        });
+
+
+    </script>
+</body>
+</html>

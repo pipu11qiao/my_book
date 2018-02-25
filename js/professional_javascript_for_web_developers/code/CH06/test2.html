@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var person = {
+        _name: 'sdf',
+    };
+    Object.defineProperty(person,'name',{
+        get: function() {
+            return this._name;
+        },
+        set: function(value) {
+            if(typeof value === 'string'){
+                this._name = 'aaaaa';
+                return 'aaaaa';
+            } else {
+                this._name = 'bbbbbb';
+                return 'bbbbbb';
+            }
+        }
+    });
+    console.log(person.name);
+    person.name ='qqq';
+    console.log(person.name);
+    person.name =232;
+    console.log(person.name);
+</script>
+</body>
+</html>

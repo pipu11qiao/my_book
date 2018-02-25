@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .box{
+            display: block;
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div  class="box" val="btn1">Right clcik or Ctrl+click me to get a custom context menu</div>
+    <div  class="box " val="btn2">sdfsdfs</div>
+    <div  class="box " val="btn3">agaetewtwqtqwetwet</div>
+    <ul  >
+        <li><a val="btn4" href="javascript: void(0);">百度</a></li>
+        <li><a val="btn5" href="javascript: void(0);">淘宝</a></li>
+        <li><a val="btn6" href="javascript: void(0);">京东</a></li>
+    </ul>
+    <script src="EventUtil.js"></script>
+    <script>
+        var Delegation = (function(document) {
+            var list = {};
+            return {
+                add: function(btnName,handler) {
+                    list[btnName] = {
+                        handler: handler
+                    };
+                },
+                init: function() {
+                    EventUtil.addHandler(document,'click',function(event){
+                        var e,el;
+                        el = EventUtil.getTarget(event);
+                        console.log(el);
+                        if(list[el.getAttribute('val')]) {
+                            list[el.getAttribute('val')].handler.call(el);
+                        }
+                    })
+                }
+            }
+        })(document);
+        Delegation.add('btn1',function() {
+            console.log(this);
+            alert(this.innerHTML);
+        });
+        Delegation.add('btn2',function(){
+            console.log(this);
+            alert(this.innerHTML);
+        });
+        Delegation.add('btn3',function() {
+            console.log(this);
+            alert(this.innerHTML);
+        });
+        Delegation.add('btn4',function() {
+            console.log(this);
+            alert(this.innerHTML);
+        });
+        Delegation.add('btn5',function() {
+            console.log(this);
+            alert(this.innerHTML);
+        });
+        Delegation.add('btn6',function() {
+            console.log(this);
+            alert(this.innerHTML);
+        });
+        Delegation.init();
+    </script>
+</body>
+</html>

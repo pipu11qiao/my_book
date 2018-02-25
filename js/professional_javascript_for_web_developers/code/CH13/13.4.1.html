@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="myDiv">click me</div>
+    <script src="EventUtil.js"></script>
+    <script>
+        EventUtil.addHandler(window,'load',function() {
+            console.log('window has loaded');
+            var scriptEl = document.createElement('script');
+            EventUtil.addHandler(scriptEl,'load',function() {
+                console.log('script has loaded' );
+            });
+            scriptEl.src = 'test.js';
+            document.body.appendChild(scriptEl);
+
+        });
+        EventUtil.addHandler(window,'resize', function() {
+            console.log('window has resized');
+        });
+    </script>
+</body>
+</html>

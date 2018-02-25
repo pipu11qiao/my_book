@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="myDiv">click me</div>
+    <script src="EventUtil.js"></script>
+    <script>
+        var divEl = document.getElementById('myDiv');
+        EventUtil.addHandler(divEl,'mouseout',function(e) {
+            e = EventUtil.getEvent(e);
+            var target = EventUtil.getTarget(e);
+            var relatedTarget = EventUtil.getRelatedTarget(e);
+            console.log('mouse has move from ' + target.tagName+ ' to ' + relatedTarget.tagName  );
+        })
+    </script>
+</body>
+</html>

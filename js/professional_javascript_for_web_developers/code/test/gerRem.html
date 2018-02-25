@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta   charset="utf-8"/>
+    <!-- <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,maximum-scale=1,minimum-scale=1"> -->
+    <title> pipu & qiao </title>
+    <style>
+        body{
+            font-size:30px;
+        }
+		input{
+			display:inline-block;
+			border:1px solid #ddd;
+			height:1.5rem;
+			font-size:1.2rem;
+		}
+		button{
+			display:inline-block;
+			border:1px solid #ddd;
+			height:1.5rem;
+			font-size:1.2rem;
+		}
+        .result{
+			display:inline-block;
+			width:80px;
+            color:red;
+
+			
+        }
+    </style>
+</head>
+<body>
+<p>原始大小<input type="text" id="num"><button id="btn">计算</button></p>
+<p>REM结果<span id="result" class="result"></span>  rem</p>
+<p>百分比结果<span id="resultPer"   class="result"></span>  %</p>
+
+<script type="text/javascript">
+    var btn=document.getElementById("btn");
+    var num=document.getElementById("num");
+    var result=document.getElementById("result");
+	var resultPer=document.getElementById("resultPer");
+    btn.onclick=function(){
+        var rem=getRem(parseFloat(num.value)).toFixed(4);
+		var per=getPer(parseFloat(num.value)).toFixed(2);
+        result.innerHTML=rem;
+		resultPer.innerHTML=per;
+    };
+	num.addEventListener("keypress",function(e){
+		if(e.keyCode=="13"){
+			var rem=getRem(parseFloat(num.value)).toFixed(4);
+			var per=getPer(parseFloat(num.value)).toFixed(2);
+        	result.innerHTML=rem;
+			resultPer.innerHTML=per;
+		}
+	});
+    function getRem(sizeInit){
+        return  sizeInit/1080*375/20;
+    }
+	function getPer(sizeInit){
+		return sizeInit/1080*100;
+	}
+</script>
+</body>
+</html>

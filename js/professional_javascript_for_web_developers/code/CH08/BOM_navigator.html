@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Frameset Example</title>
+</head>
+<body>
+<a href="http://www.oschina.net" target="-_parent">开源中国</a>
+</body>
+<script>
+    //检测插件 IE中无效
+    function hasPlugin(name){
+        name=name.toLowerCase();
+        for(var i=0; i<window.navigator.plugins.length;i++){
+            if(window.navigator.plugins[i].name.toLowerCase().indexOf(name)>-1){
+                return true;
+            }
+        }
+        return false;
+    }
+    //检测IE 中的插件
+    function hasIEPlugin(name){
+        try {
+            new ActiveXObject(name);
+            return true;
+        } catch (ex){
+            return false;
+        }
+    }
+    alert(hasPlugin(prompt("请输入插件名称")))
+</script>
+</html>

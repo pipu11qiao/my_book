@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div id="myDiv">Right clcik or Ctrl+click me to get a custom context menu</div>
+    <ul id="myMenu" style="position: absolute;visibility: hidden;background-color: silver">
+        <li><a href="http://www.baidu.com">百度</a></li>
+        <li><a href="http://www.taobao.com">淘宝</a></li>
+        <li><a href="http://www.jingdong.com">京东</a></li>
+    </ul>
+    <script src="EventUtil.js"></script>
+    <script>
+        var divEl = document.getElementById('myDiv');
+        EventUtil.addHandler(divEl,'contextmenu',function(e) {
+            e = EventUtil.getEvent(e);
+            EventUtil.preventDefault(e);
+
+            var menu = document.getElementById('myMenu');
+            menu.style.left = e.clientX + 'px';
+            menu.style.top = e.clientY + 'px';
+            menu.style.visibility = 'visible';
+        })
+        EventUtil.addHandler(document,'click',function() {
+            document.getElementById('myMenu').style.visibility = 'hidden';
+        })
+    </script>
+</body>
+</html>

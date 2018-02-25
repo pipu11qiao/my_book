@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function fun(){
+        var argumentArray = Array.prototype.slice.call(arguments,0);
+        console.log(arguments.constructor);
+        console.log(argumentArray.constructor);
+    }
+    fun();
+    function periodStrRank(strArray) {
+        if(strArray.length === 0) {
+            return [];
+        } else {
+            var str = strArray.join('');
+            var rankStr = '';
+            if(str.indexOf('全') !== -1) {
+                rankStr += '全天,';
+            }
+            if(str.indexOf('上') !== -1) {
+                rankStr += '上午,';
+            }
+            if(str.indexOf('下') !== -1) {
+                rankStr += '下午,';
+            }
+            return rankStr.slice(0,-1).split(',');
+        }
+    }
+    var data = [
+            ['上午','全天','下午'],
+            ['全天','下午','上午'],
+            ['上午','全天'],
+            ['全天','下午'],
+            ['上午','下午'],
+            ['下午','全天','上午']
+    ]
+    for(var i = 0; i < data.length; i++) {
+        console.log(periodStrRank(data[i]));
+    }
+</script>
+</body>
+</html>
