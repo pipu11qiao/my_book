@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script>
+    var canvas = $('#canvas').get(0);
+    var context = canvas.getContext('2d');
+
+    context.fillStyle = "rgb(255,0,0)";
+    context.fillRect(150,150,100,100);
+    context.translate(150,150);
+
+    context.fillStyle="rgb(0,0,255)";
+    context.fillRect(150,150,100,100);
+
+
+</script>
+</body>
+</html>

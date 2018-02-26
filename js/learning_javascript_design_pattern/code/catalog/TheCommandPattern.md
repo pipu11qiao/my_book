@@ -1,0 +1,3 @@
+#### The Command Pattern
+
+The Command pattern aims to encapsulate method invocation, requests or perations into a single object and gives us the ablility to both parameterize and pass method calls around that can be executed at our discretion. IN addition, it enables us to decoupli objects invoking the action from the bojects wich implement them, giving us a greater degree of overall flexiblility in swapping out concrete classed(objects);

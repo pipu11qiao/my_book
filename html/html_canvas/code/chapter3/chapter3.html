@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<script>
+    var canvas = $('#canvas').get(0);
+    var context = canvas.getContext('2d');
+//    context.fillRect(40,40,100,100);
+//    context.strokeRect(0,0,100,100);
+//
+//
+//    context.beginPath();
+//    context.moveTo(40,40);
+//    context.lineTo(340,40);
+//    context.closePath();
+//    context.stroke();
+
+    context.beginPath();
+    context.arc(230,90,50,0,Math.PI*2,false);
+    context.closePath();
+    context.fill();
+</script>
+</body>
+</html>

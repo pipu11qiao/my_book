@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .test {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .test img {
+            cursor: none;
+        !important;
+        }
+
+        canvas {
+            display: none;
+        }
+
+        .cursor-box {
+            width: 14px;
+            height: 14px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: none;
+        !important;
+            /*display: none;*/
+        }
+
+        .cursor-box.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="test">
+    <img src="11.jpg" alt="">
+</div>
+<div class="cursor-box"></div>
+<canvas id="zoom-canvas"></canvas>
+<script src="../js/jquery-1.9.1.min.js"></script>
+<script>
+    var $cursor = $('.cursor-box');
+    var cursorWidth = 14;
+    var cursorHeight = 14;
+    $cursor.css({
+        width: cursorWidth + 'px',
+        height: cursorHeight + 'px'
+    });
+
+    var zoomCanvas = $('#zoom-canvas')[0];
+    var zoomCtx = zoomCanvas.getContext('2d');
+    var $img = $('.test img');
+    var img = $img[0];
+    img.crossOrigin = 'anonymous';
+    var canGetColor = false;
+    $img.load(function () {
+
+        var img = $img[0];
+        var width = 1024;
+        var height = 683;
+        zoomCanvas.width = 1024;
+        zoomCanvas.height = 683;
+        zoomCtx.drawImage(img, 0, 0);
+        canGetColor = true;
+    });
+
+    var getColorData = function (col, row, sX, sY, ctx) {
+        var color = {
+            r: 0,
+            g: 0,
+            b: 0,
+            a: 0
+        };
+        var r, c, curX, curY, curData;
+        for (r = 0; r < row; r++) {
+            curX = sX - (row / 2) + r;
+            for (c = 0; c < col; c++) {
+                curY = sY - (col / 2) + c;
+                curData = ctx.getImageData(curX, curY, 1, 1).data;
+                color.r += curData[0];
+                color.g += curData[1];
+                color.b += curData[2];
+                color.a += curData[3];
+            }
+        }
+        // 取平均值
+        var pointsNum = col * row;
+        var pointsCorlor = {
+            r: Math.ceil(color.r / pointsNum),
+            g: Math.ceil(color.g / pointsNum),
+            b: Math.ceil(color.b / pointsNum),
+            a: Math.ceil(color.a / pointsNum)
+        };
+//        debugger
+        return pointsCorlor;
+    };
+    $img.on('mousemove', function (e) {
+        var curX = e.pageX;
+        var curY = e.pageY;
+        e.preventDefault();
+
+        if (!$cursor.hasClass('active')) {
+            $cursor.addClass('active');
+        }
+        var color;
+        if (canGetColor) {
+            // 获取当前所在的图片位置,周围图标大小的位置取值，得到颜色值取反
+            var positionX = e.pageX - $img.offset().left;
+            var positionY = e.pageY - $img.offset().top;
+
+            var data = getColorData(cursorWidth,cursorHeight,positionX,positionY,zoomCtx);
+//            var data = zoomCtx.getImageData(positionX,positionY,1,1).data;
+//            console.log(data);
+//            debugger;
+            color = 'rgba('+ Math.abs(140-data.r) +',' +  Math.abs(180-data.g) + ',' +  Math.abs(255-data.b) + ',' + 0.8 + ')';
+//            color = 'rgba('+ data[0] +',' +  data[1] + ',' +  data[2] + ',' +  data[3] + ')';
+        } else {
+            color = '#ccc';
+        }
+        $cursor.css({
+            top: curY - 7 + 'px',
+            left: curX - 7 + 'px',
+            background: color
+        });
+
+
+    });
+
+
+</script>
+</body>
+</html>

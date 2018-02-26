@@ -1,0 +1,4 @@
+#### The Single Pattern
+The Singleton pattern is thus known because it restricts instantiation of a class to a single object. Classically the Singleton pattern can be implemented by creating a class with a method that creates a new instance of the class if one doesn't exist. In the event of an instance already existing it simply returns a reference to that object;
+
+Singletons differ from static classed as we can delay their initialization, generally because they require som information that may not be available during initialization time. They don't provide a way for code that is unaware of a previous reference to them to easily retrieve them. This is because it is neither the object or 'calss' that's retured by a single ton, it's a structure. Think of how closured variables aren't actually cosures - the function scope that provieds the closure is the closure.

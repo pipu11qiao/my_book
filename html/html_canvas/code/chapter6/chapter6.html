@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+<canvas id="canvas" width="500" height="500"></canvas>
+<div>
+   <button id="startAnimation">Start</button>
+   <button id="stopAnimation">Stop</button>
+</div>
+<script>
+    var canvas = $('#canvas');
+    var context = canvas.get(0).getContext('2d');
+
+    var canvasWidth = canvas.width();
+    var canvasHeight = canvas.height();
+
+    var playAnimation = true;
+
+    var startButton = $('#startAnimation');
+    var stopButton = $('#stopAnimation');
+
+    startButton.hide();
+    startButton.click(function () {
+        $(this).hide();
+        stopButton.show();
+
+        playAnimation = true;
+        animate();
+    });
+
+    stopButton.click(function () {
+        $(this).hide();
+        startButton.show();
+
+        playAnimation = false;
+    });
+    var Shape = function(x,y,width,height) {
+        this.x = x;
+        this.y = y;
+        this.width = Math.ceil(Math.random() * width);
+        this.height = Math.ceil(Math.random() *height);
+    };
+    var shapes = new Array();
+
+    shapes.push(new Shape(50,50,50,50));
+    shapes.push(new Shape(100,100,50,50));
+    shapes.push(new Shape(150,150,50,50));
+    function animate() {
+        context.clearRect(0,0,canvasWidth,canvasHeight);
+        for(var i = 0; i < shapes.length; i ++ ) {
+            var tmpShape = shapes[i];
+            tmpShape.x += Math.random() * 4;
+            tmpShape.y += Math.random() * 4;
+            context.fillRect(tmpShape.x, tmpShape.y, tmpShape.width, tmpShape.height);
+        }
+
+        if(playAnimation) {
+            setTimeout(animate,33);
+        }
+    }
+    animate();
+
+</script>
+</body>
+</html>
