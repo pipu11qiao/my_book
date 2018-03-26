@@ -28,3 +28,7 @@ Array.isArray() 浏览器支持 IE9+ Firefox 4+ Safari 5+ Opera 10.5 + 和 Chrom
   * forEach
   * map
   * some
+3. 归并方法
+  * reduce
+  * reduceRight
+  

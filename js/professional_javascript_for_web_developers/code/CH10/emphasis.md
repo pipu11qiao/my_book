@@ -37,7 +37,7 @@ if(someNode.nodeType === Node.ELEMENT_NODE) { // IE无效
 所有浏览器兼容
 ```javascript
 
-if(someNode.nodeType === 1) { // IE无效
+if(someNode.nodeType === 1) { // 
     alert("Node is an element");
 }
 ```
