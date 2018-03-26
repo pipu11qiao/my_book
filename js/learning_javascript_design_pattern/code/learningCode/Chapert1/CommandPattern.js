@@ -5,7 +5,7 @@
     var carManager = {
         // request information
         requestInfo: function (modal,id) {
-            return 'The infomation for ' + modal + 'width Id' + id;
+            return 'The infomation for ' + modal + ' width Id' + id;
         },
 
         // purchase the car
@@ -17,8 +17,11 @@
         arrangeViewing: function (model,id) {
             return 'You have successfully booked a viewing of ' + id;
         },
-        execute: function (name) {
-            return this[name] && this[name].apply(carManager);
+        execute: function () {
+            var name = args[0];
+            args = args.splice(1);
+            return this[name] && this[name].apply(this,args);
         }
     };
+    console.log(carManager.execute('requestInfo','fast','22'));
 })();
