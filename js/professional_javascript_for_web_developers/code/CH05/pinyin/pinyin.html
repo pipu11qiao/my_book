@@ -11,7 +11,15 @@
 <script src="pinyinLibrary.js"></script>
 <script src="pinyin.js"></script>
 <script>
+  var str = '吃饭了';
+  console.log('拼音转换', pinyinTool.convertToPinYin(str, true));
 
+  var normalArr = ['000', 'aaaa', 'bb', 'ab', 'ba', 'ccc', 'dd'];
+  console.log('norma', pinyinTool.sort(normalArr));
+  var pinyinArr = ['张三','李四','大的','小的','李明','李','李明持'];
+  console.log('pinyin',pinyinTool.sort(pinyinArr));
+  var allArr = normalArr.concat(pinyinArr);
+  console.log('all',pinyinTool.sort(allArr));
 </script>
 </body>
 </html>
