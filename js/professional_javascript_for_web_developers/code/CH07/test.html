@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var person = {};
+    Object.defineProperty(person,'name',{
+        configurable: true,
+        writable: false,// 不可写
+        enumerable: false,
+        value: 'ddd'
+    });
+    console.log(person.name);
+    person.name ='qqq';
+    console.log(person.name);
+    for(var key in person) {
+    //不可枚举
+        console.log(key);
+    }
+</script>
+</body>
+</html>
