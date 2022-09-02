@@ -1,5 +1,3 @@
-console.log(3)
-
 const opMap = {
   '+': 1,
   '-': 1,
@@ -8,7 +6,6 @@ const opMap = {
 };
 // prvStr是前面处理好的str
 function midToBack(expStr, prevStr) {
-  console.log(`expStr, prevStr`, expStr, prevStr);
   let tmpStr = expStr;
   if (tmpStr.length === 0) {
     return prevStr;
@@ -44,10 +41,11 @@ function midToBack(expStr, prevStr) {
 
 
 function test() {
-  // const res = midToBack('9+5-3');
-  // const res = midToBack('9-5+2');
-  const res = midToBack('9-5+2*3');
-  console.log(res);
+  let startStr= '9-5+2*3';
+  // let startStr= '9-5+2-3';
+  console.log(`startStr`, startStr);
+  const endStr = midToBack(startStr);
+  console.log(`endStr`, endStr);
 }
 
 test()
