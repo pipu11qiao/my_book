@@ -1,13 +1,16 @@
+function square(x) {
+  return x * x;
+}
 function expo(res, b, n) {
   if (n === 0) {
     return res;
   } else {
     if (n % 2 === 0) {
-      res = expo(expo(1, b, n / 2), b, n / 2);
+      return expo(res, square(b), n / 2);
     } else {
-      half = expo(1, b, (n - 1) / 2);
+      return expo(res * b, square(b), (n - 1) / 2);
     }
   }
 }
 
-console.log(expo(1, 2, 4));
+console.log(expo(1, 2, 5));
