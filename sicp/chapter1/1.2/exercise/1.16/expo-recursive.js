@@ -8,7 +8,7 @@ function expo(b, n) {
     if (n % 2 === 0) {
       return square(expo(b, n / 2));
     } else {
-      return b * square(expo(b, (n - 1) / 2));
+      return b * expo(b, n - 1);
     }
   }
 }

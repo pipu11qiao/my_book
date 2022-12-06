@@ -5,7 +5,7 @@
 
     (cond ((= n 0) res)
           ((even? n) (expo-iter res (square b) (/ n 2) ))
-          (else (expo-iter (* res b) (square b) (/ (- n 1) 2) ) )
+          (else (expo-iter (* res b)  b  (- n 1) ) )
           )
     )
 
