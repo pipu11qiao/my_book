@@ -2,13 +2,19 @@
 #lang sicp
 (define (square x) (* x x ))
 (define (devides? n test-divisor) (= (remainder n test-divisor) 0 ))
+(define (next n)
+  (if (= n 2)
+      3
+      (+ n 2)
+      )
+  )
 (define (smallest-divisor n )
   (define (find-divisor n test-divisor)
     (
      cond
       ((> (square test-divisor) n ) n)
       ((devides? n test-divisor) test-divisor)
-      (else (find-divisor n (+ test-divisor 1)))
+      (else (find-divisor n (next  test-divisor )))
       )
     )
   (find-divisor n 2)
@@ -48,4 +54,4 @@
 
 (search-for-primes 10000000001 3)
 (newline)
-(search-for-primes 10000000001 3)
+(search-for-primes 1000000000001 3)

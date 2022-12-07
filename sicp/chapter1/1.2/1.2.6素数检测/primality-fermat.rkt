@@ -1,22 +1,24 @@
-
 #lang sicp
 ; 费马小定理： 如果n是一个素数，a是小于n的任意正整数，那么a的n次方与a模n同余
 (define (square x) (* x x ))
-(define (expo-recur b n )
+(define (expmod base exp m )
   (
    cond
-    ((= n 0) 1)
-    ((even? n) (square (expo-recur b (/ n 2))))
-    (else (* b (expo-recur b (- n 1))))
+    ((= exp 0) 1)
+    ((even? exp)
+     (remainder (square (expmod base (/ exp 2) m) ) m)
+     )
+    ( else
+      (remainder (* base (expmod base (- exp 1) m)) m)
+      )
     )
-  )
-(define (expmod base exp m )
-  (remainder (expo-recur base exp) m)
+
   )
 (define(fermat-test n)
   (define (try-it a ) (= (expmod a n n ) a))
   (try-it ( + 1 (random(- n 1))))
   )
+
 
 (define (fast-prime? n times)
   (cond

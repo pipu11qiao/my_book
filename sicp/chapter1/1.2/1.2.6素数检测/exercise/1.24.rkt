@@ -1,20 +1,35 @@
 
 #lang sicp
+; 费马小定理： 如果n是一个素数，a是小于n的任意正整数，那么a的n次方与a模n同余
 (define (square x) (* x x ))
-(define (devides? n test-divisor) (= (remainder n test-divisor) 0 ))
-(define (smallest-divisor n )
-  (define (find-divisor n test-divisor)
-    (
-     cond
-      ((> (square test-divisor) n ) n)
-      ((devides? n test-divisor) test-divisor)
-      (else (find-divisor n (+ test-divisor 1)))
+(define (expmod base exp m )
+  (
+   cond
+    ((= exp 0) 1)
+    ((even? exp)
+     (remainder (square (expmod base (/ exp 2) m) ) m)
+     )
+    ( else
+      (remainder (* base (expmod base (- exp 1) m)) m)
       )
     )
-  (find-divisor n 2)
+
+  )
+(define(fermat-test n)
+  (define (try-it a ) (= (expmod a n n ) a))
+  (try-it ( + 1 (random(- n 1))))
   )
 
-(define (prime? n ) (=(smallest-divisor n) n))
+(define (fast-prime? n times)
+  (cond
+    ((= times 0 )true)
+    ((fermat-test n )(fast-prime? n (- times 1)))
+    (else false)
+    )
+  )
+(define (prime? n )
+  (fast-prime? n 10)
+  )
 
 (define (report-prime elapsed-time)
   (display " *** ")
@@ -46,6 +61,6 @@
   (timed-prime-test start count)
   )
 
-(search-for-primes 10000000001 3)
+(search-for-primes 1000001 3)
 (newline)
-(search-for-primes 10000000001 3)
+(search-for-primes 100000001 3)

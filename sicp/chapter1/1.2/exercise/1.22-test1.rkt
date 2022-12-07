@@ -1,5 +1,11 @@
-
 #lang sicp
+
+(define (next-odd n)
+  (if (odd? n)
+      (+ n 2)
+      (+ n 1)
+      )
+  )
 
 (define (prime? n )
   (define (square x) (* x x ))
@@ -18,7 +24,5 @@
   (=(smallest-divisor n) n)
   )
 
-; (prime? 2 )
-; (prime? 4 )
-; (prime? 5 )
-; (prime? 6 )
+(next-odd 2)
+(next-odd 3)
