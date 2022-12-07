@@ -24,5 +24,36 @@
   (=(smallest-divisor n) n)
   )
 
-(next-odd 2)
-(next-odd 3)
+( define (continue-prime n count)
+   (cond
+     ((= count 0)
+      (display "are primes.")
+      )
+     ((prime? n )
+      (display n)
+      (newline)
+      (continue-prime (next-odd n) (- count 1))
+      )
+     (else
+      (continue-prime (next-odd n) count)
+      )
+     )
+   )
+( define (test n)
+   (define (test-time n start-time)
+     (continue-prime n 3)
+     (-(runtime)  start-time)
+     )
+   (test-time n (runtime))
+   )
+
+
+
+; (next-odd 2)
+; (next-odd 3)
+; (contnue-prime 1000 3)
+(test 1)
+(test 1000)
+(test 100000)
+(test 10000000)
+(test 1000000000)
