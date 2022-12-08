@@ -9,3 +9,26 @@ technique to controlling complexity
 
 
 
+## 加载文件
+
+使用(#%provide (all-defined))来声明要输出的函数
+
+```rkt
+;base.rkt
+#lang sicp
+
+(define (square x) (* x x))
+(define (add x y )(+ x y))
+
+(#%provide (all-defined))
+```
+
+
+使用(#%require )来加载函数
+```rkt
+#lang sicp
+(#%require "./base.rkt")
+
+(add 1 3)
+(square 3)
+```
