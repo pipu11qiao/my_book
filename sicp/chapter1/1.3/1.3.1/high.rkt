@@ -29,7 +29,7 @@
   (sum term a  next b )
   )
 
-; (pi-sum 10 20)
+(pi-sum 10 20)
 
 (define (integral f  a b dx)
   (define ( add-dx x) (+ x dx))

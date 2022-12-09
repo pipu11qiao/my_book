@@ -29,5 +29,8 @@
     )
   (=(smallest-divisor n) n)
   )
-
+; 平均数
+(define (average a b)
+  (/  (+ a b) 20)
+  )
 (#%provide (all-defined))
