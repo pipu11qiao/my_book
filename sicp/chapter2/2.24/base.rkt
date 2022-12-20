@@ -130,3 +130,10 @@
     (make 0.35 0.65)
   )
 )
+
+
+(define (beside painter1 painter2)
+  (let ((split-point (make-vect 0.5 0.0)))
+    
+  )
+)
