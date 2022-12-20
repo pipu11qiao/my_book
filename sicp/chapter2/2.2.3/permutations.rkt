@@ -1,0 +1,20 @@
+#lang sicp
+(#%require "../util.rkt")
+(#%require "./base.rkt")
+(#%require "./prime-sum-pair.rkt")
+
+(define (remove target seq)
+  (filter (lambda (x) (not(= x target))) seq)
+  )
+(define (permutations s )
+  (if (null? s)
+      (list nil)
+      (flatmap (lambda (x)
+                 (map (lambda (p) (cons x p))
+                      (permutations (remove x s))
+                      )
+                 ) s )
+      )
+  )
+
+(permutations (list 1 2 3))
